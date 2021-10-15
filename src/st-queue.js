@@ -17,7 +17,6 @@ module.exports = class Queue {
 
   queue = new ListNode();
 
-  head = null;
   currentNode = null;
 
   getUnderlyingList() {
@@ -25,9 +24,8 @@ module.exports = class Queue {
   }
 
   enqueue(value) {
-    if (this.head === null){
+    if (this.queue.value === undefined){
       this.queue.value = value;
-      this.head = this.queue;
       this.currentNode = this.queue;
     } else {
       this.currentNode.next = new ListNode(value);
@@ -36,9 +34,8 @@ module.exports = class Queue {
   }
 
   dequeue() {
-    let numdReturn = this.head.value;
+    let numdReturn = this.queue.value;
     this.queue = this.queue.next;
-    this.head = this.head.next;
     return numdReturn;
   }
 
