@@ -14,12 +14,12 @@ module.exports = class BinarySearchTree {
   }
   
   add(data) {
-    let newNode = new Node(data);
+    let newNodeAdd = new Node(data);
 
     if(this.rootNode === null){
-      this.rootNode = newNode;
+      this.rootNode = newNodeAdd;
     } else {
-      this.insertNode(this.rootNode, newNode)
+      this.insertNode(this.rootNode, newNodeAdd)
     }
   }
 
@@ -51,8 +51,6 @@ module.exports = class BinarySearchTree {
     return !!this.find(data);
   }
 
-   
-
   getNode (node, data) {
     if (node === null){
       return null;
@@ -71,7 +69,7 @@ module.exports = class BinarySearchTree {
     let nodeRemove = this.getNode(this.rootNode, data);
     let left = nodeRemove.left;
     let right = nodeRemove.right;
-    let newNode = left ? this.max(left).data : right ? this.min(right).data : data;
+    let newNode = left ? this.max(left) : right ? this.min(right) : data;
     let [nodeParentRemove, isLeft] = this.getParentNode(newNode);
 
     nodeRemove.data = newNode;
@@ -109,7 +107,7 @@ module.exports = class BinarySearchTree {
       node = nextNode;
       nextNode = nextNode.left;
     }
-    return node;
+    return node.data;
   }
 
   max(node = this.rootNode) {
@@ -118,7 +116,7 @@ module.exports = class BinarySearchTree {
       node = nextNode;
       nextNode = node.right
     }
-    return node;
+    return node.data;
   }
 
 }
